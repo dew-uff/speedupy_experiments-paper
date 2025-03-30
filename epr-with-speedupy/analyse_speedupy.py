@@ -144,7 +144,6 @@ def val(x):
 def main(PARAM):
     PARTICLE_SPIN = 0.5
     analyse(PARTICLE_SPIN, PARAM)
-
 if __name__ == '__main__':
     PARAM = int(sys.argv[1])
     main(PARAM)

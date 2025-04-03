@@ -1,4 +1,5 @@
 import os
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.table import Table
@@ -9,6 +10,17 @@ from PIL import Image
 # Set non-interactive backend
 import matplotlib
 matplotlib.use('Agg')
+
+# Check execution argument
+if len(sys.argv) != 2:
+    print("Usage: python3.12 gen_graphs.py <num_executions>")
+    sys.exit(1)
+
+try:
+    num_execucoes = int(sys.argv[1])
+except ValueError:
+    print("The argument must be an integer representing the number of executions per input.")
+    sys.exit(1)
 
 # Experiment input labels
 inputs_per_experiment = {
@@ -26,7 +38,7 @@ inputs_per_experiment = {
     "TINY_GSHCGP": ["1", "3", "5", "7", "9"],
     "analyse_speedupy": ["100", "200", "300", "400", "500"],
     "qho2_speedupy": ["100", "500", "1000", "5000", "6000"],
-    "curves_speedupy": ["1","2","3","4","5"] # os 8 inputs padrões deixam a legenda ruim
+    "curves_speedupy": ["1", "2", "3", "4", "5"]
 }
 
 suffixes = [
@@ -46,7 +58,11 @@ experiments = list(inputs_per_experiment.keys())
 def compute_medians(filepath):
     with open(filepath, "r") as f:
         values = [float(line.strip()) for line in f.readlines()]
-    return [np.median(values[i:i+2]) for i in range(0, len(values), 2)]
+
+    if len(values) % num_execucoes != 0:
+        raise ValueError(f"File {filepath} has an incompatible number of lines for {num_execucoes} executions per input.")
+
+    return [np.median(values[i:i+num_execucoes]) for i in range(0, len(values), num_execucoes)]
 
 summary_best_last = []
 summary_all_points = []
@@ -100,13 +116,11 @@ for exp in experiments:
 df_best_last = pd.DataFrame(summary_best_last, columns=["Experiment", "Input", "Time (s)", "Best Method"])
 df_all_points = pd.DataFrame(summary_all_points, columns=["Experiment"] + [f"Input {i+1}" for i in range(5)])
 
-# Print tables to terminal
 print("\nBest time for the largest input:")
 print(df_best_last.to_string(index=False))
 print("\nBest method and time for each input:")
 print(df_all_points.to_string(index=False))
 
-# Save CSVs
 df_best_last.to_csv(os.path.join(graph_dir, "best_last_input.csv"), index=False)
 df_all_points.to_csv(os.path.join(graph_dir, "best_all_inputs.csv"), index=False)
 

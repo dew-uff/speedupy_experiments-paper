@@ -1,5 +1,4 @@
 import os
-import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.table import Table
@@ -10,17 +9,6 @@ from PIL import Image
 # Set non-interactive backend
 import matplotlib
 matplotlib.use('Agg')
-
-# Check execution argument
-if len(sys.argv) != 2:
-    print("Usage: python3.12 gen_graphs.py <num_executions>")
-    sys.exit(1)
-
-try:
-    num_execucoes = int(sys.argv[1])
-except ValueError:
-    print("The argument must be an integer representing the number of executions per input.")
-    sys.exit(1)
 
 # Experiment input labels
 inputs_per_experiment = {
@@ -37,15 +25,13 @@ inputs_per_experiment = {
     "vince_sim_speedupy": ["1000000", "2000000", "3000000", "4000000", "5000000"],
     "TINY_GSHCGP": ["1", "3", "5", "7", "9"],
     "analyse_speedupy": ["100", "200", "300", "400", "500"],
-    "qho2_speedupy": ["100", "500", "1000", "5000", "6000"],
-    "curves_speedupy": ["1", "2", "3", "4", "5"]
 }
 
 suffixes = [
-    "no_cache",
-    "intra_args",
-    "intra_exec",
-    "intra_exp"
+    "output_no_cache",
+    "output_spdpy_intra_args",
+    "output_spdpy_intra_exec",
+    "output_spdpy_intra_exp"
 ]
 markers = ['o', '^', 'x', 's']
 
@@ -55,28 +41,17 @@ os.makedirs(graph_dir, exist_ok=True)
 
 experiments = list(inputs_per_experiment.keys())
 
-def compute_medians(filepath):
+def compute_medians(filepath, num_inputs):
+    import numpy as np
     with open(filepath, "r") as f:
         values = [float(line.strip()) for line in f.readlines()]
-
-    total_entries = 5  # Sempre 5 entradas, como você mencionou
-    expected_lines = num_execucoes * total_entries
-    if len(values) != expected_lines:
-        raise ValueError(f"File {filepath} must have exactly {expected_lines} lines for {num_execucoes} executions and 5 inputs.")
-
+    runs_per_input = len(values) // num_inputs
     medians = []
-    for input_idx in range(total_entries):
-        # Coleta os valores alternados para esta entrada
-        entry_values = [values[input_idx + total_entries * exec_idx] for exec_idx in range(num_execucoes)]
-        medians.append(np.median(entry_values))
-
+    for i in range(num_inputs):
+        group = [values[i + j * num_inputs] for j in range(runs_per_input)]
+        medians.append(np.median(group))
     return medians
 
-
-    if len(values) % num_execucoes != 0:
-        raise ValueError(f"File {filepath} has an incompatible number of lines for {num_execucoes} executions per input.")
-
-    return [np.median(values[i:i+num_execucoes]) for i in range(0, len(values), num_execucoes)]
 
 summary_best_last = []
 summary_all_points = []
@@ -94,7 +69,7 @@ for exp in experiments:
         fpath = os.path.join(output_dir, fname)
         if not os.path.exists(fpath):
             continue
-        medians = compute_medians(fpath)
+        medians = compute_medians(fpath, len(inputs))
         medians_by_method[suf] = medians
         plt.plot(inputs, medians, label=suf.replace('output_', '').replace('spdpy_', 'speedupy_'), marker=markers[idx], linewidth=2)
         for i, median in enumerate(medians):
@@ -130,11 +105,13 @@ for exp in experiments:
 df_best_last = pd.DataFrame(summary_best_last, columns=["Experiment", "Input", "Time (s)", "Best Method"])
 df_all_points = pd.DataFrame(summary_all_points, columns=["Experiment"] + [f"Input {i+1}" for i in range(5)])
 
+# Print tables to terminal
 print("\nBest time for the largest input:")
 print(df_best_last.to_string(index=False))
 print("\nBest method and time for each input:")
 print(df_all_points.to_string(index=False))
 
+# Save CSVs
 df_best_last.to_csv(os.path.join(graph_dir, "best_last_input.csv"), index=False)
 df_all_points.to_csv(os.path.join(graph_dir, "best_all_inputs.csv"), index=False)
 

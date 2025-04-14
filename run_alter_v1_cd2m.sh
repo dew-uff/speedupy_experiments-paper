@@ -22,17 +22,17 @@ ROOT_PATH="$(pwd)"
 SOURCE_DIR="$ROOT_PATH/speedupy"
 
 # Define the list of destination paths / Define a lista de caminhos de destino
-DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/01pilots/01pilots_exp03_quicksort/quicksort.py" 
-DESTINATIONS_1="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp02_look_and_say/look_and_say.py" 
-DESTINATIONS_2="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp11_gauss_legendre_quadrature/gauss_legendre_quadrature.py" 
+# DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/01pilots/01pilots_exp03_quicksort/quicksort.py" 
+DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp02_look_and_say/look_and_say.py" 
+DESTINATIONS_1="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp11_gauss_legendre_quadrature/gauss_legendre_quadrature.py" 
 
-DESTINATIONS=($DESTINATIONS_0 $DESTINATIONS_1 $DESTINATIONS_2)
-# DESTINATIONS=($DESTINATIONS_0 $DESTINATIONS_1)
+# DESTINATIONS=($DESTINATIONS_0 $DESTINATIONS_1 $DESTINATIONS_2)
+DESTINATIONS=($DESTINATIONS_0 $DESTINATIONS_1)
 
 # Define the list of arguments for each destination path / Define a lista de argumentos para cada caminho de destino
-ARGUMENTS_0=("1e1" "1e2" "1e3" "1e4" "1e5") # quicksort
-ARGUMENTS_1=("25" "30" "35" "40" "43") # look_and_say
-ARGUMENTS_2=("1000" "2000" "3000" "4000" "4500") # gauss_legendre_quadrature
+# ARGUMENTS_0=("1e1" "1e2" "1e3" "1e4" "1e5") # quicksort
+ARGUMENTS_0=("45" "46" "47" "48" "49") # look_and_say
+ARGUMENTS_1=("5000" "7000" "9000" "11000" "13000") # gauss_legendre_quadrature
 
 # Copy the source directory to each destination directory / Copia o diretório de origem para cada diretório de destino
 for i in "${!DESTINATIONS[@]}"; do

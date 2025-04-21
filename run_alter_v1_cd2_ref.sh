@@ -34,49 +34,50 @@ ROOT_PATH="$(pwd)"
 SOURCE_DIR="$ROOT_PATH/speedupy"
 
 # Define the list of destination paths / Define a lista de caminhos de destino
-#DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/01pilots/01pilots_exp03_quicksort/quicksort.py" 
-DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp02_look_and_say/look_and_say.py" 
-#DESTINATIONS_2="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp11_gauss_legendre_quadrature/gauss_legendre_quadrature.py" 
-#DESTINATIONS_3="$ROOT_PATH/speedupy_experiments/01pilots/01pilots_exp04_heat_distribution_lu/heat_distribution_lu.py" 
-#DESTINATIONS_4="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp08_fft/fft_speedupy.py" 
-#DESTINATIONS_5="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp14_pernicious_numbers/pernicious_numbers.py" 
-#DESTINATIONS_6="$ROOT_PATH/speedupy_experiments/05msrgithubexps/05msrgithubexps_exp02_cvar/cvar_speedupy.py" 
-#DESTINATIONS_7="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp06_belief_propagation/belief_propagation_speedupy.py" 
-#DESTINATIONS_8="$ROOT_PATH/DNACC-with-speedupy/adapted_for_speedupy/examples/basic/basic_spheres.py" 
-#DESTINATIONS_9="$ROOT_PATH/DNACC-with-speedupy/adapted_for_speedupy/examples/walking_colloid/walking_colloid.py" 
-#DESTINATIONS_10="$ROOT_PATH/diversity-with-speedupy/Diversity_sims/vince_sim_speedupy.py" 
-#DESTINATIONS_11="$ROOT_PATH/Tiny-GSGP-with-speedupy/adapted_for_speedupy/TINY_GSHCGP.py" 
-#DESTINATIONS_12="$ROOT_PATH/epr-with-speedupy/analyse_speedupy.py"
-#DESTINATIONS_13="$ROOT_PATH/qho-with-speedupy/qho2_speedupy.py"
-#DESTINATIONS_14="$ROOT_PATH/speedupy_experiments/05msrgithubexps/05msrgithubexps_exp04_curves/curves_speedupy.py"
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/01pilots/01pilots_exp03_quicksort/quicksort.py" 
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp02_look_and_say/look_and_say.py" 
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp11_gauss_legendre_quadrature/gauss_legendre_quadrature.py" 
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/01pilots/01pilots_exp04_heat_distribution_lu/heat_distribution_lu.py" 
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp08_fft/fft_speedupy.py" 
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp14_pernicious_numbers/pernicious_numbers.py" 
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/05msrgithubexps/05msrgithubexps_exp02_cvar/cvar_speedupy.py" 
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/04benchproglangs/04benchpl_exp06_belief_propagation/belief_propagation_speedupy.py" 
+###DESTINATIONS_0="$ROOT_PATH/DNACC-with-speedupy/adapted_for_speedupy/examples/basic/basic_spheres.py" 
+###DESTINATIONS_0="$ROOT_PATH/DNACC-with-speedupy/adapted_for_speedupy/examples/walking_colloid/walking_colloid.py" 
+###DESTINATIONS_0="$ROOT_PATH/diversity-with-speedupy/Diversity_sims/vince_sim_speedupy.py" 
+###DESTINATIONS_0="$ROOT_PATH/Tiny-GSGP-with-speedupy/adapted_for_speedupy/TINY_GSHCGP.py" 
+###DESTINATIONS_0="$ROOT_PATH/epr-with-speedupy/analyse_speedupy.py"
+###DESTINATIONS_0="$ROOT_PATH/qho-with-speedupy/qho2_speedupy.py"
+###DESTINATIONS_0="$ROOT_PATH/speedupy_experiments/05msrgithubexps/05msrgithubexps_exp04_curves/curves_speedupy.py"
 
-DESTINATIONS=($DESTINATIONS_0)
-
+#DESTINATIONS=($DESTINATIONS_0)
+#DESTINATIONS=($DESTINATIONS_0 $DESTINATIONS_1 $DESTINATIONS_2 $DESTINATIONS_3)
+#DESTINATIONS=($DESTINATIONS_0 $DESTINATIONS_1)
 #DESTINATIONS=($DESTINATIONS_0 $DESTINATIONS_1 $DESTINATIONS_2 $DESTINATIONS_3 $DESTINATIONS_4 $DESTINATIONS_5 $DESTINATIONS_6 $DESTINATIONS_7 $DESTINATIONS_8 $DESTINATIONS_9 $DESTINATIONS_10 $DESTINATIONS_11 $DESTINATIONS_12 $DESTINATIONS_13 $DESTINATIONS_14)
 
 # Define arguments
 #ARGUMENTS_0=("1e1" "1e2" "1e3" "1e4" "1e5") # quicksort
-ARGUMENTS_0=("45" "46" "47" "48" "49") # look_and_say
-#ARGUMENTS_2=("5000" "7000" "9000" "11000" "13000") # gauss_legendre_quadrature
-#ARGUMENTS_3=("0.1" "0.05" "0.01" "0.005" "0.001") # heat_distribution_lu
-#ARGUMENTS_4=("5000" "5500" "6000" "6500" "7000") # fft
-#ARGUMENTS_5=("20000" "25000" "30000" "35000" "39000") # pernicious_numbers
-#ARGUMENTS_6=("1e6" "5e6" "10e6" "50e6" "100e6") # cvar
-#ARGUMENTS_7=("1000" "5500" "10000" "14500" "19000") # belief_propagation
-#ARGUMENTS_8=("2000000" "5000000" "8000000" "11000000" "13000000") # dnacc_basic_spheres
-#ARGUMENTS_9=("-100" "-225" "-350" "-475" "-600") # dnacc_walking_colloid
-#ARGUMENTS_10=("1000000" "2000000" "3000000" "4000000" "5000000") # vince_sim
-#ARGUMENTS_11=("12" "13" "14" "15" "16") # TINY_GSHCGP
-#ARGUMENTS_12=("100" "250" "500" "750" "1000") # analyse_epr
-#ARGUMENTS_13=("4000" "4500" "5000" "5500" "6000") # qho2
+#ARGUMENTS_0=("45" "46" "47" "48" "49") # look_and_say
+#ARGUMENTS_0=("5000" "7000" "9000" "11000" "13000") # gauss_legendre_quadrature
+#ARGUMENTS_0=("0.1" "0.05" "0.01" "0.005" "0.001") # heat_distribution_lu
+#ARGUMENTS_0=("5000" "5500" "6000" "6500" "7000") # fft
+#ARGUMENTS_1=("20000" "25000" "30000" "35000" "39000") # pernicious_numbers
+#ARGUMENTS_2=("1e6" "5e6" "10e6" "50e6" "100e6") # cvar
+#ARGUMENTS_0=("1000" "5500" "10000" "14500" "19000") # belief_propagation
+#ARGUMENTS_1=("2000000" "5000000" "8000000" "11000000" "13000000") # dnacc_basic_spheres
+#ARGUMENTS_0=("-20" "-50" "-80" "-110" "-140") # dnacc_walking_colloid
+#ARGUMENTS_0=("1000000" "2000000" "3000000" "4000000" "5000000") # vince_sim
+#ARGUMENTS_0=("12" "13" "14" "15" "16") # TINY_GSHCGP
+#ARGUMENTS_1=("100" "250" "500" "750" "1000") # analyse_epr
+#ARGUMENTS_0=("4000" "4500" "5000" "5500" "6000") # qho2
 
-#ARG_CURVES_1=("69414241 -12312719 1231423 5423672 1054757 20891335 1475678 5263549") # 30s
-#ARG_CURVES_2=("-1512440 -11561234 85224142 1457612 10875031 20156635 4155678 7578149") # 120s
-#ARG_CURVES_3=("6766862 -75644953 269308423 54289912 54186312 -20614635 45165678 52343449") # 190s
-#ARG_CURVES_4=("4341212 -12312549 6991523 54523672 13073947 20394535 145651231178 5232449") # 320s
-#ARG_CURVES_5=("-1112434 -194132223 62892412 5281412 807343501 20142265 39455678 5467849") # 348s
+#ARG_CURVES_1=("-11124 -11124 62412 1412 107501 201635 15678 57849")
+#ARG_CURVES_2=("1576862 -8567453 1648423 542312 512 -20135 1455678 52349")
+#ARG_CURVES_3=("4341212 -12312419 123123 5423672 107 20135 145678 52349")
+#ARG_CURVES_4=("4341241 -1231219 1231423 5423672 10547 20135 145678 52349")
+#ARG_CURVES_5=("-1112434 -1241223 6212412 5281412 107501 20142265 3455678 5467849")
 
-#ARGUMENTS_14=("${ARG_CURVES_1}" "${ARG_CURVES_2}" "${ARG_CURVES_3}" "${ARG_CURVES_4}" "${ARG_CURVES_5}") # curves
+#ARGUMENTS_1=("${ARG_CURVES_1}" "${ARG_CURVES_2}" "${ARG_CURVES_3}" "${ARG_CURVES_4}" "${ARG_CURVES_5}") # curves
 
 # Copy speedupy to each destination
 for i in "${!DESTINATIONS[@]}"; do

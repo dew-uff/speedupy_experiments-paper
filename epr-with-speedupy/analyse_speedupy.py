@@ -124,7 +124,7 @@ def val(x):
     ANGLE_RESOLUTION = 3.75
     return numpy.round(x / ANGLE_RESOLUTION) * ANGLE_RESOLUTION
 
-# Jeito que tava antes, tive que mudar pra ficar de acordo com os parâmetros da tabela
+# Modificado ficar de acordo com os parâmetros da tabela
 
 # if __name__ == '__main__':
 #     if len(sys.argv) >= 2:
